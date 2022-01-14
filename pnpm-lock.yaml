@@ -19,11 +19,11 @@ importers:
       ts-jest: ^27.0.5
       tsup: ^4.14.0
       typescript: ^4.4.2
-      unplugin: ^0.2.7
+      unplugin: ^0.3.0
       vite: ^2.5.3
       webpack: ^5.51.2
     dependencies:
-      unplugin: 0.2.7_c75b475458ad255921b9f2b94a436e4a
+      unplugin: 0.3.0_c75b475458ad255921b9f2b94a436e4a
     devDependencies:
       '@antfu/eslint-config': 0.7.0_eslint@7.32.0+typescript@4.4.2
       '@types/jest': 27.0.1
@@ -2716,6 +2716,7 @@ packages:
     resolution: {integrity: sha512-xiqMQR4xAeHTuB9uWm+fFRcIOgKBMiOBP+eXiyT7jsgVCq1bkVygt00oASowB7EdtpOHaaPgKt812P9ab+DDKA==}
     engines: {node: ^8.16.0 || ^10.6.0 || >=11.0.0}
     os: [darwin]
+    requiresBuild: true
     dev: true
     optional: true
 
@@ -5530,13 +5531,16 @@ packages:
     engines: {node: '>= 4.0.0'}
     dev: true
 
-  /unplugin/0.2.7_c75b475458ad255921b9f2b94a436e4a:
-    resolution: {integrity: sha512-KcMTl+aF+UhNOUvUdxwxHiOhvIoFe++foE2GgblFmXsnjdRYYggd2Tg7wopljCnOyiv5IspQRKfAvpyc4qtzuw==}
+  /unplugin/0.3.0_c75b475458ad255921b9f2b94a436e4a:
+    resolution: {integrity: sha512-9yLlOo+XC4NdIRgpkDSHOAHkQDq2x4mbuVNO/eKVa3C8WTn5wWGfzEFfRJFL8euqnX3Gf7hEur0AhXxy+WSwkg==}
     peerDependencies:
+      esbuild: '>=0.13'
       rollup: ^2.50.0
       vite: ^2.3.0
-      webpack: ^4.0.0
+      webpack: 4 || 5
     peerDependenciesMeta:
+      esbuild:
+        optional: true
       rollup:
         optional: true
       vite:
@@ -5545,15 +5549,9 @@ packages:
         optional: true
     dependencies:
       rollup: 2.56.3
-      upath: 2.0.1
       vite: 2.5.3
       webpack: 5.51.2
       webpack-virtual-modules: 0.4.3
-    dev: false
-
-  /upath/2.0.1:
-    resolution: {integrity: sha512-1uEe95xksV1O0CYKXo8vQvN1JEbtJp7lb7C5U9HMsIp6IVwntkH/oNUzyVNQSd4S1sYk2FpSSW44FqMc8qee5w==}
-    engines: {node: '>=4'}
     dev: false
 
   /update-notifier/4.1.3:
