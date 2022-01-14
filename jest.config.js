@@ -1,4 +1,7 @@
 module.exports = {
+  collectCoverage: true,
+  testEnvironment: 'node',
+  testPathIgnorePatterns: ["playground"],
   roots: [
     '<rootDir>/test',
   ],
