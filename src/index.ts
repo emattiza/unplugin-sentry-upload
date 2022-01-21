@@ -4,7 +4,7 @@ import * as SentryCli from '@sentry/cli'
 import { Options } from './types'
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-export default createUnplugin<Options>(_options => ({
+export default createUnplugin<Options>(_pluginOptions => ({
   name: 'unplugin-sentry-upload',
   vite: {
     async writeBundle(this: PluginContext, _options: NormalizedOutputOptions, _bundle: OutputBundle): Promise<void> {
