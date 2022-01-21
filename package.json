@@ -70,7 +70,8 @@
     "test:update": "jest -u"
   },
   "dependencies": {
-    "unplugin": "^0.3.0"
+    "unplugin": "^0.3.0",
+    "@sentry/cli": "^1.72.0"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.7.0",
