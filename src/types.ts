@@ -1,4 +1,5 @@
-import { Compilation } from "webpack";
+import { Compilation } from 'webpack'
+import SentryCliPlugin from '@sentry/webpack-plugin'
 
 export interface IncludeOptions {
   paths: Array<string>
@@ -37,7 +38,7 @@ export interface DeployOptions {
   url?: string
 }
 
-export interface Options {
+export type Options = {
   // define your plugin options here
   include: string | Array<string> | IncludeOptions
   org?: string
@@ -68,4 +69,4 @@ export interface Options {
   errorHandler?: ((err: Error, invokeErr: (() => void), compilation: Compilation) => void)
   setCommits?: SetCommitsOptions
   deploy?: DeployOptions
-}
+} | SentryCliPlugin.SentryCliPluginOptions

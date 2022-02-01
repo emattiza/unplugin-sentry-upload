@@ -71,7 +71,8 @@
   },
   "dependencies": {
     "unplugin": "^0.3.0",
-    "@sentry/cli": "^1.72.0"
+    "@sentry/cli": "^1.72.0",
+    "@sentry/webpack-plugin": "^1.18.4"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.7.0",

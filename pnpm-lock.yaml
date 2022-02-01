@@ -6,6 +6,7 @@ importers:
     specifiers:
       '@antfu/eslint-config': ^0.7.0
       '@sentry/cli': ^1.72.0
+      '@sentry/webpack-plugin': ^1.18.4
       '@types/jest': ^27.0.1
       '@types/node': ^16.7.10
       bumpp: ^6.0.6
@@ -25,6 +26,7 @@ importers:
       webpack: ^5.51.2
     dependencies:
       '@sentry/cli': 1.72.0
+      '@sentry/webpack-plugin': 1.18.4
       unplugin: 0.3.0_c75b475458ad255921b9f2b94a436e4a
     devDependencies:
       '@antfu/eslint-config': 0.7.0_eslint@7.32.0+typescript@4.4.2
@@ -763,6 +765,16 @@ packages:
       npmlog: 4.1.2
       progress: 2.0.3
       proxy-from-env: 1.1.0
+    transitivePeerDependencies:
+      - encoding
+      - supports-color
+    dev: false
+
+  /@sentry/webpack-plugin/1.18.4:
+    resolution: {integrity: sha512-1NVnxCmNxcJ7+UQwpMGiSEFNgc52vGCZ0pjpfvmmtJMxnJFYnSNy2vTVStL4xwGMe6vLR9luJRT9Smoy3lxJYg==}
+    engines: {node: '>= 8'}
+    dependencies:
+      '@sentry/cli': 1.72.0
     transitivePeerDependencies:
       - encoding
       - supports-color

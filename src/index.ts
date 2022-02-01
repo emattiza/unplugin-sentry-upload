@@ -1,26 +1,30 @@
-import { NormalizedOutputOptions, OutputBundle, PluginContext, SourceMap } from 'rollup'
-import { createUnplugin } from 'unplugin'
-import * as SentryCli from '@sentry/cli'
+import { NormalizedOutputOptions, OutputBundle, PluginContext } from 'rollup'
+import { createUnplugin, UnpluginContextMeta, UnpluginFactory } from 'unplugin'
+import SentryCliPlugin from '@sentry/webpack-plugin'
+import { Compiler } from 'webpack'
 import { Options } from './types'
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export default createUnplugin<Options>(_pluginOptions => ({
-  name: 'unplugin-sentry-upload',
-  vite: {
-    async writeBundle(this: PluginContext, _options: NormalizedOutputOptions, _bundle: OutputBundle): Promise<void> {
-      // guard for watch mode and no sourcemap output
-      if (!this.meta.watchMode && (!_options.sourcemap === false))
-        finalizeRelease(_pluginOptions, _options, _bundle)
-    },
-  },
-}))
+export default createUnplugin<Options>(pluginFactory)
 
-function finalizeRelease(_pluginOptions: Options, _options: NormalizedOutputOptions, _bundle: OutputBundle) {
-  for (const [_thing, info] of Object.entries(_bundle)) {
-    if (info.type === 'chunk') {
-      if (info.map)
-        console.log(info.fileName)
-        console.log(`${info.fileName}.map`)
+function pluginFactory<Options>(): UnpluginFactory<Options> {
+  return (pluginOptions: Options | undefined, meta: UnpluginContextMeta) => {
+    return {
+      name: 'unplugin-sentry-upload',
+      vite: {
+        async writeBundle(this: PluginContext, viteOptions: NormalizedOutputOptions, bundle: OutputBundle): Promise<void> {
+          // guard for watch mode and no sourcemap output
+          if (!this.meta.watchMode && (!viteOptions.sourcemap === false) && pluginOptions !== undefined)
+            finalizeRelease.call(this, pluginOptions, viteOptions, bundle, meta)
+        },
+      },
+      webpack(compiler: Compiler) {
+        const sentryWebpack = new SentryCliPlugin(pluginOptions as any)
+        sentryWebpack.apply(compiler)
+      },
     }
   }
+}
+
+async function finalizeRelease<Options>(this: PluginContext, _pluginOptions: Options, _viteOptions: NormalizedOutputOptions, _bundle: OutputBundle, _meta: UnpluginContextMeta): Promise<void> {
+  this.warn('inside function')
 }
