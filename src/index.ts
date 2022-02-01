@@ -9,17 +9,18 @@ export default createUnplugin<Options>(_pluginOptions => ({
   vite: {
     async writeBundle(this: PluginContext, _options: NormalizedOutputOptions, _bundle: OutputBundle): Promise<void> {
       // guard for watch mode and no sourcemap output
-      if (!this.meta.watchMode && (!_options.sourcemap === false)) {
-        for (const [thing, info] of Object.entries(_bundle)) {
-          if (info.type === 'chunk') {
-            //if (info.map) console.log(JSON.stringify(info.map))
-            const cli = new SentryCli.default()
-            const version = await cli.releases.proposeVersion()
-            console.log(cli)
-            console.log(version)
-          }
-        }
-      }
-    }
+      if (!this.meta.watchMode && (!_options.sourcemap === false))
+        finalizeRelease(_pluginOptions, _options, _bundle)
+    },
   },
 }))
+
+function finalizeRelease(_pluginOptions: Options, _options: NormalizedOutputOptions, _bundle: OutputBundle) {
+  for (const [_thing, info] of Object.entries(_bundle)) {
+    if (info.type === 'chunk') {
+      if (info.map)
+        console.log(info.fileName)
+        console.log(`${info.fileName}.map`)
+    }
+  }
+}

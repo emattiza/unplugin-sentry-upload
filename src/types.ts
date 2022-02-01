@@ -26,10 +26,15 @@ export interface SetCommitsManualOptions {
   commit: string
 }
 
-export type SetCommitsOptions = SetCommitsAutoOptions & SetCommitsManualOptions
+export type SetCommitsOptions = SetCommitsAutoOptions | SetCommitsManualOptions
 
 export interface DeployOptions {
-
+  env: string
+  started?: number
+  finished?: number
+  time?: number
+  name?: string
+  url?: string
 }
 
 export interface Options {
@@ -61,7 +66,6 @@ export interface Options {
   silent?: boolean
   cleanArtifacts?: boolean
   errorHandler?: ((err: Error, invokeErr: (() => void), compilation: Compilation) => void)
-  setCommits: SetCommitsOptions
-  deploy: DeployOptions
+  setCommits?: SetCommitsOptions
+  deploy?: DeployOptions
 }
-

@@ -1,13 +1,13 @@
 import { defineConfig } from 'vite'
 import Inspect from 'vite-plugin-inspect'
-import Unplugin from '../src/vite'
+import sentryPluginUpload from '../src/vite'
 
 export default defineConfig({
   build: {
-    sourcemap: true
+    sourcemap: true,
   },
   plugins: [
     Inspect(),
-    Unplugin(),
+    sentryPluginUpload({ include: 'dist/assets/', setCommits: { auto: true } }),
   ],
 })
