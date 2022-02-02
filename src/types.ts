@@ -38,8 +38,7 @@ export interface DeployOptions {
   url?: string
 }
 
-export type Options = {
-  // define your plugin options here
+export interface UnPluginOptions {
   include: string | Array<string> | IncludeOptions
   org?: string
   project?: string
@@ -69,4 +68,6 @@ export type Options = {
   errorHandler?: ((err: Error, invokeErr: (() => void), compilation: Compilation) => void)
   setCommits?: SetCommitsOptions
   deploy?: DeployOptions
-} | SentryCliPlugin.SentryCliPluginOptions
+}
+
+export type Options = UnPluginOptions | SentryCliPlugin.SentryCliPluginOptions
